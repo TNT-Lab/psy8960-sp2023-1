@@ -18,4 +18,5 @@ long_tbl <- pivot_longer(wide_tbl, q1:q5)
 
 # Alternative
 wide_tbl[,paste0("q",1:5)][wide_tbl[,paste0("q",1:5)]==0] <- NA
+wide_tbl <- wide_tbl[!is.na(wide_tbl$q2),]
 
