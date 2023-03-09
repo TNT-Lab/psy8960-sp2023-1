@@ -20,4 +20,6 @@ bfi_tbl <- bfi %>%
 
 ## Visualization
 And now we're going to display a table!
-`{r bfi_tbl}`
+```{r viz}
+bfi_tbl
+```
