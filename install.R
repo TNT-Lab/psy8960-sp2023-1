@@ -1,1 +1,1 @@
-install.packages("dplyr","psych")
+install.packages(c("dplyr","psych"))
