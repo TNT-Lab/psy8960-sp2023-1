@@ -6,7 +6,7 @@ output: html_notebook
 
 ## Script Settings and Libraries
 ```{r setup, message=FALSE}
-library(tidyverse)
+library(dplyr)
 library(psych)
 ```
 
