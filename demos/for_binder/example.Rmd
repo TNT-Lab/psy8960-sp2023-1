@@ -1,0 +1,25 @@
+---
+title: "Binder Demonstration"
+author: "Richard N. Landers, PhD"
+output: html_notebook
+---
+
+## Script Settings and Libraries
+```{r setup, message=FALSE}
+library(dplyr)
+library(psych)
+```
+
+## Data Import
+First we need to import __data__!
+```{r import}
+data(bfi)
+bfi_tbl <- bfi %>%
+  select(A1:A5)
+```
+
+## Visualization
+And now we're going to display a table!
+```{r viz}
+bfi_tbl
+```
