@@ -1,0 +1,11 @@
+name: testapp
+title:
+username:
+account: tntlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8577736
+bundleId: 6962220
+url: https://tntlab.shinyapps.io/testapp/
+when: 1678901447.11565
+lastSyncTime: 1678901447.11566

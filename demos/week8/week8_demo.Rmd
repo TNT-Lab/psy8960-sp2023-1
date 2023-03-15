@@ -1,0 +1,30 @@
+---
+title: "My First Markdown"
+author: "ME"
+output: 
+  html_document:
+    theme:
+      bootswatch: cosmo
+    toc: true
+    toc_float: true
+    df_print: paged
+
+---
+
+# Script Resources and Settings
+Paragraph of `r 4+5` text
+```{r setup, message=F}
+library(tidyverse)
+library(psych)
+```
+
+# Importing
+```{r import}
+data(bfi)
+bfi
+```
+
+# Analysis
+```{r analysis}
+cor.test(bfi$A1, bfi$A2)
+```
