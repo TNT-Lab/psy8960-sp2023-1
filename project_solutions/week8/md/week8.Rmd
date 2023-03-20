@@ -1,0 +1,57 @@
+---
+title: "PSY 8960 Week 8 Project"
+author: Richard N. Landers
+output: 
+  html_document:
+    df_print: paged
+---
+
+# Reproducible Image and Online Resources
+An image of this project as of *March 20, 2023* can be accessed by [clicking this link](https://mybinder.org/v2/gh/rnlanders/psy8960-sp2023/HEAD).
+
+An interactive web app is available by [clicking this link instead](https://tntlab.shinyapps.io/shiny_week8/).
+
+# Script Settings and Resources
+```{r section2, message=F}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+library(tidyverse)
+```
+
+# Data Import and Cleaning
+I reverse coded Q5, coded gender as factor and a date flag for use in the shiny app, and calculated means for display in both the shiny app and in this notebook.
+```{r section3}
+week8_tbl <- read_csv("../data/week3.csv") %>%
+  mutate(
+    # timeStart = ymd_hms(timeStart),
+    q5_rev = 6 - q5,
+    gender = factor(gender, levels=c("M","F"), labels=c("Male","Female")),
+    q1q6_mean = rowMeans(across(c(q1:q4,q5_rev,q6))),
+    q8q10_mean = rowMeans(across(q8:q10)),
+    after_aug2017_flag = timeEnd > "2017-08-01 00:00:00",
+  )
+```
+
+# Visualization
+Used select to subset q vars from data; displayed plot based on two means calculated in data cleaning step
+```{r section4, echo=F, message=F}
+select(week8_tbl, q1:q4, q5_rev, q6)
+ggplot(week8_tbl,
+       aes(x = q1q6_mean, y = q8q10_mean)) +
+       geom_point() +
+       geom_smooth(method="lm", color="purple")
+```
+
+# Analysis
+I calculated the correlation between the two means and observed a correlation of `r cor.test(week8_tbl$q1q6_mean, week8_tbl$q8q10_mean)$estimate`. We failed to reject the null. Terrible news.
+```{r section5}
+cor.test(week8_tbl$q1q6_mean, week8_tbl$q8q10_mean)
+```
+
+# Data Export
+We needed to create a skinny data file, i.e., a file containing only the necessary data to create the app. RDS allows us to do this in the native R data format which prevents any loss of information as we might see on export/import with CSV/TSV.
+```{r section6}
+week8_tbl %>%
+  select(q1q6_mean, q8q10_mean, 
+         gender, after_aug2017_flag) %>%
+  saveRDS("../shiny/shiny_week8/shiny_input.RDS")
+```

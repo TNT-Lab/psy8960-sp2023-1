@@ -1,0 +1,11 @@
+name: shiny_week8
+title:
+username:
+account: tntlab
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8538339
+bundleId: 6983670
+url: https://tntlab.shinyapps.io/shiny_week8/
+when: 1679338096.50191
+lastSyncTime: 1679338096.50194
